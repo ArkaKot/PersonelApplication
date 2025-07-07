@@ -40,7 +40,7 @@ namespace PersonelApplication.ViewModels
             EditPersonCommand = new RelayCommand(AddEditPersons, CanEditDismissalPerson);
             RefreshPersonCommand = new RelayCommand(RefreshPersons);
             DismissalPersonCommand = new RelayCommand(DismissPersons, CanEditDismissalPerson);
-            ContractPersonCommand = new RelayCommand(ContractPerson, canContractPerson);
+            ContractPersonCommand = new RelayCommand(ContractPerson,canContractPerson);
             SettingsCommand = new RelayCommand(MainSettings);
             AddGroupCommand = new RelayCommand(AddGroups);
             DeleteGroupCommand = new AsyncRelayCommand(DeleteGroup);
@@ -129,6 +129,7 @@ namespace PersonelApplication.ViewModels
                 return false;
             else
                 return true;
+
         }
 
         private void ContractPerson(object obj)

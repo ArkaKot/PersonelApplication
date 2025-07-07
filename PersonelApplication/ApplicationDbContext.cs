@@ -1,4 +1,5 @@
 
+using PersonelApplication.Migrations;
 using PersonelApplication.Models.Configurations;
 using PersonelApplication.Models.Domains;
 using PersonelApplication.Properties;
@@ -21,7 +22,8 @@ namespace PersonelApplication
         public ApplicationDbContext()
             : base(_connectionString)
         {
-          
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>()); 
+            Database.Initialize(false); 
         }
 
         public DbSet<Person> Persons { get; set; }
