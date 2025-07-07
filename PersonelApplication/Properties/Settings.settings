@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PersonelApplication.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ServerAdress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(local)</Value>
+    </Setting>
+    <Setting Name="ServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">SQLEXPRESS</Value>
+    </Setting>
+    <Setting Name="BaseName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PersonelApp</Value>
+    </Setting>
+    <Setting Name="UserServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sa</Value>
+    </Setting>
+    <Setting Name="PasswordServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

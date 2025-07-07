@@ -1,0 +1,130 @@
+﻿<mah:MetroWindow x:Class="PersonelApplication.Views.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:PersonelApplication.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="MainWindow" Height="450" Width="800"
+        Background="White">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <Button
+       Command="{Binding AddPersonCommand}"
+       Content="Dodaj"
+       Height="25"
+       Width="100"
+       Margin="5" />
+            <Button
+       Command="{Binding EditPersonCommand}"
+       CommandParameter="{Binding SelectedPerson}"
+       Content="Edytuj"
+       Height="25"
+       Width="100"
+       Margin="5" />
+            <Button
+       Command="{Binding RefreshPersonCommand}"
+       Content="Odśwież"
+       Height="25"
+       Width="100"
+       Margin="5" />
+            <Button
+        Command="{Binding DismissalPersonCommand}"
+        CommandParameter="{Binding SelectedPerson}"
+       Content="Zwolnij"
+       Height="25"
+       Width="100"
+       Margin="5" />
+            <Button
+       Command="{Binding ContractPersonCommand}"
+       Content="Umowy"
+       Height="25"
+       Width="100"
+       Margin="5" />
+            <Button
+       Content="Ustawienia"
+       Command="{Binding SettingsCommand}"
+       Height="25"
+       Width="100"
+       Margin="5" />
+        </StackPanel>
+        <DataGrid  
+   Grid.Row="1"  
+   Grid.Column="1"
+   ItemsSource="{Binding Persons}"
+   SelectedItem="{Binding SelectedPerson}"
+   Margin="5"
+   CanUserAddRows="False"
+   IsReadOnly="True"
+   SelectionMode="Single"
+   AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                <DataGridTextColumn Binding="{Binding FirstName}" Header="Imię" />
+                <DataGridTextColumn Binding="{Binding LastName}" Header="Nazwisko" />
+                <DataGridTextColumn Binding="{Binding Age }" Header="Wiek" />
+                <DataGridCheckBoxColumn Binding="{Binding Student}" Header="Student" />
+                <DataGridTextColumn Binding="{Binding Comments}" Header="Uwagi" />
+                <DataGridTextColumn Binding="{Binding Group.Name}" Header="Grupa" />
+                <DataGridCheckBoxColumn Binding="{Binding Contract}" Header="Zatrudniony" />
+                <DataGridTextColumn Binding="{Binding ContractId }" Header="Id Umowy" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel
+   HorizontalAlignment="Right"
+   Orientation="Horizontal"
+   Grid.Row="2"
+   Grid.Column="1">
+            
+            <Button
+        Command="{Binding DeleteGroupCommand}"
+        HorizontalAlignment="Right"
+        Grid.Row="2"
+        Grid.Column="1"
+        Content="Usuń"
+        Height="25"
+        Width="100"
+        Margin="5" />
+            <ComboBox
+       Height="25"
+       Width="150"
+       Margin="5"
+       ItemsSource="{Binding Groups}"
+       SelectedValue="{Binding SelectedGroupId}"
+       DisplayMemberPath="Name"
+       SelectedValuePath="Id"
+       />
+
+            <Button
+             Command="{Binding AddGroupCommand}"
+             HorizontalAlignment="Right"
+             Grid.Row="2"
+             Grid.Column="1"
+             Content="Dodaj"
+            Height="25"
+             Width="100"
+             Margin="5" />
+
+        </StackPanel>
+        <ContentControl Grid.RowSpan="3" Grid.ColumnSpan="2" Content="{Binding ActualView}" />
+    </Grid>
+</mah:MetroWindow>

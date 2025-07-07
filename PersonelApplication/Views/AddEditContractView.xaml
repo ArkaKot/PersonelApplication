@@ -1,0 +1,77 @@
+﻿<mah:MetroWindow x:Class="PersonelApplication.Views.AddEditContractView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PersonelApplication.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Name="AddEditContractWindowView"
+        Title="Dane Umowy" Height="400" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Visibility="{Binding IsUpdateContract, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1" Content="Id:" Margin="5"/>
+        <TextBox Text="{Binding Contract.Id}" Visibility="{Binding IsUpdateContract, Converter={StaticResource BooleanToVisibilityConverter}}" IsReadOnly="True" Grid.Row="1" Grid.Column="1" Margin="5" />
+
+        <Label Grid.Row="2" Content="Numer Umowy:" Margin="5"/>
+        <TextBox Text="{Binding Contract.NumberContract,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Row="2" Grid.Column="1" Margin="5" />
+
+        <Label Grid.Row="3" Content="Data Rozpoczęcia:" Margin="5"/>
+        <DatePicker SelectedDate="{Binding Contract.StartDate,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Row="3" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="4" Content="Data zakończenia:" Margin="5"/>
+        <DatePicker SelectedDate="{Binding Contract.EndDate}" Grid.Row="4" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="5" Content="Wynagrodzenie:" Margin="5"/>
+        <mah:NumericUpDown Value="{Binding Contract.Salary,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Column="1" HorizontalAlignment="Left" Margin="5,0,0,0" Grid.Row="5" VerticalAlignment="Center" Width="187"  Minimum="0" Maximum="1000000" />
+        
+        <Label Grid.Row="6"  Content="Typ Umowy:" Margin="5" />
+        <ComboBox
+            Grid.Row="6" 
+            Grid.Column="1" 
+            Margin="5" 
+            ItemsSource="{Binding TypeContractPerson}"
+            SelectedValue="{Binding Contract.TypeContract.Id, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Id"
+            />
+
+        <Label Grid.Row="7" Content="Osoba:" Margin="5" />
+        <ComboBox
+     Grid.Row="7" 
+     Grid.Column="1" 
+     Margin="5"
+     ItemsSource="{Binding Persons}"
+     SelectedValue="{Binding Contract.PersonId, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+     DisplayMemberPath="FullName"
+     SelectedValuePath="Id"
+     />
+
+        <Label Grid.Row="8" Content="Uwagi:" Margin="5"/>
+        <TextBox Text="{Binding Contract.Comments}"  Grid.Row="8" Grid.Column="1" Margin="5" />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="1" HorizontalAlignment="Right">
+            <Button Command="{Binding CloseCommand}" CommandParameter="{Binding ElementName= AddEditContractWindowView}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
+            <Button Command="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName= AddEditContractWindowView}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
+        </StackPanel>
+        
+
+    </Grid>
+</mah:MetroWindow>
