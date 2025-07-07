@@ -35,7 +35,9 @@ namespace PersonelApplication.ViewModels
         }
 
         public MainWindowViewModel()
-        {      
+        {
+            Persons = new ObservableCollection<PersonWrapper> { };
+
             AddPersonCommand = new RelayCommand(AddEditPersons);
             EditPersonCommand = new RelayCommand(AddEditPersons, CanEditDismissalPerson);
             RefreshPersonCommand = new RelayCommand(RefreshPersons);
@@ -125,10 +127,14 @@ namespace PersonelApplication.ViewModels
 
         private bool canContractPerson(object obj)
         {
-            if (Persons.Any() != true)
+
+            if (Persons.Any() != true || Persons == null)
+            {
+               
                 return false;
-            else
-                return true;
+            }
+                else
+                    return true;
 
         }
 
